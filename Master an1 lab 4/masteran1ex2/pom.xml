@@ -8,10 +8,10 @@
         <version>2.3.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>masteran1lab3ex1</groupId>
-    <artifactId>masteran1lab3ex1</artifactId>
+    <groupId>masteran1ex2</groupId>
+    <artifactId>masteran1ex2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>masteran1lab3ex1</name>
+    <name>masteran1ex2</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -42,11 +42,6 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>6.1.5.Final</version>
         </dependency>
     </dependencies>
 

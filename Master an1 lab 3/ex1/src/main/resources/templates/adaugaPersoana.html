@@ -1,15 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
- <form method="POST" th:action="@{/goAndAdd}" th:object="${persoana}">
-     <input type="text" placeholder="Nume" th:field="*{nume}"><br>
-     <input type="text" placeholder="Prenume" th:field="*{prenume}"><br>
-     <input type="text" placeholder="Varsta" th:field="*{varsta}"><br>
-     <input type="submit" value="AdaugaPersoana">
- </form>
+<!-- <form method="POST" th:action="@{/addPersoana}" th:object="${persoana}">-->
+<!--     <input type="text" placeholder="Nume" th:field="*{nume}">-->
+<!--     <span th:if="${#fields.hasErrors('nume')}" th:errors="*{nume}" class="error"></span>-->
+<!--     <br>-->
+<!--     <input type="text" placeholder="Prenume" th:field="*{prenume}">-->
+<!--     <span th:if="${#fields.hasErrors('prenume')}" th:errors="*{prenume}" class="error"></span>-->
+<!--     <br>-->
+<!--     <input type="text" placeholder="Varsta" th:field="*{varsta}">-->
+<!--     <span th:if="${#fields.hasErrors('varsta')}" th:errors="*{varsta}" class="error"></span>-->
+<!--     <br>-->
+<!--     <input type="submit" value="AdaugaPersoana">-->
+<!-- </form>-->
+<div>
+    <input id="nume" type="text" placeholder="Nume"><br>
+    <input id="prenume" type="text" placeholder="Prenume"><br>
+    <input id="varsta" type="text" placeholder="Varsta"><br>
+    <input type="button" onclick="addNewPerson()" value="AdaugaPersoana">
+</div>
+
 </body>
 </html>
+<script>
+    function addNewPerson() {
+        var nameInput = $("#nume").val();
+        var prenumeInput = $("#prenume").val();
+        var varstaInput = $("#varsta").val();
+
+        const dataServer = {
+            nume: nameInput,
+            prenume: prenumeInput,
+            varsta: varstaInput
+        }
+        console.log(dataServer);
+
+        $.ajax({
+            type:"POST",
+            contentType: "application/json",
+            url: "http://localhost:8080/addPersoana",
+            data: JSON.stringify(dataServer),
+            success: function (data) {
+                alert(data);
+                window.location = "http://localhost:8080/"
+            }
+        })
+    }
+</script>

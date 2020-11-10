@@ -1,8 +1,14 @@
 package masteran1lab3ex1.masteran1lab3ex1.model;
 
+import javax.validation.constraints.NotEmpty;
+
 public class Persoana {
+
+    @NotEmpty
     private String nume;
+    @NotEmpty(message = "This field(prenume) can not be empty")
     private String prenume;
+    @NotEmpty(message = "This field(varsta) can not be empty")
     private String varsta;
 
     public Persoana(){}

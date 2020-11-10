@@ -1,14 +1,15 @@
 package masteran1lab3ex1.masteran1lab3ex1.cotroller;
 
+import masteran1lab3ex1.masteran1lab3ex1.model.Persoana;
 import masteran1lab3ex1.masteran1lab3ex1.repository.MyRepository;
 import masteran1lab3ex1.masteran1lab3ex1.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 public class MainController {
@@ -42,7 +43,25 @@ public class MainController {
     }
 
     @GetMapping("/goAndAdd")
-    public  String goAndAdd() {
+    public  String goAndAdd(@ModelAttribute("persoana") Persoana persoana,  Model model) {
+//        model.addAttribute("persoana", new Persoana());
         return "adaugaPersoana";
+    }
+
+//    @PostMapping("/addPersoana")
+//    public String adaugaPersoana(@Valid Persoana persoana, BindingResult bindingResult, Model model) {
+//        if(bindingResult.hasErrors()) {
+//            return "adaugaPersoana";
+//        }
+//        mainService.addPersoana(persoana);
+//        model.addAttribute("persoane", mainService.getPersoane());
+//        return "index";
+//    }
+
+    @PostMapping("/addPersoana")
+    public String adaugaPersoana(@RequestBody Persoana persoana, Model model) {
+        mainService.addPersoana(persoana);
+        model.addAttribute("persoane", mainService.getPersoane());
+        return "index";
     }
 }
